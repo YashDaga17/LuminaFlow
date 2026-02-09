@@ -4,6 +4,7 @@ import { useState } from "react";
 import { suggestDescription } from "@/lib/actions/ai-actions";
 import { deleteTask, updateTask } from "@/lib/actions/task-actions";
 import { Button } from "@/components/ui/button";
+import type { Task } from "@/lib/types";
 
 const statusColors = {
   TODO: "bg-gray-100 text-gray-800",
@@ -17,7 +18,7 @@ const priorityColors = {
   HIGH: "text-red-600",
 };
 
-export default function TaskItem({ task }: { task: any }) {
+export default function TaskItem({ task }: { task: Task }) {
   const [aiDescription, setAiDescription] = useState(task.description);
   const [isLoading, setIsLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);

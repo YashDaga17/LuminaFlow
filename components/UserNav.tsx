@@ -3,8 +3,9 @@
 import { useRouter } from "next/navigation";
 import { signOut } from "@/lib/actions/auth-actions";
 import { Button } from "@/components/ui/button";
+import type { User } from "@/lib/types";
 
-export default function UserNav({ user }: { user: any }) {
+export default function UserNav({ user }: { user: User | null }) {
   const router = useRouter();
 
   async function handleSignOut() {

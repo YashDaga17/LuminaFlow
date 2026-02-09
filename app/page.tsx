@@ -4,6 +4,7 @@ import AddTaskForm from "@/components/AddTaskForm";
 import UserNav from "@/components/UserNav";
 import { getCurrentUser } from "@/lib/actions/auth-actions";
 import { redirect } from "next/navigation";
+import type { Task } from "@/lib/types";
 
 export default async function Home() {
   const user = await getCurrentUser();
@@ -51,7 +52,7 @@ export default async function Home() {
             </div>
           ) : (
             <div className="space-y-4">
-              {tasks.map((task) => (
+              {tasks.map((task: Task) => (
                 <TaskItem key={task.id} task={task} />
               ))}
             </div>
