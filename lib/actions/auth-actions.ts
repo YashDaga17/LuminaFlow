@@ -137,6 +137,11 @@ export async function signOut() {
 
 export async function getCurrentUser() {
   try {
+    // During build time or in certain contexts, cookies might not be available
+    if (typeof document === "undefined" && !process.env.DATABASE_URL) {
+      return null;
+    }
+
     const cookieStore = await cookies();
     const token = cookieStore.get("auth-token")?.value;
 
@@ -148,9 +153,14 @@ export async function getCurrentUser() {
       userId: string;
       email: string;
     };
-    const user = await db.user.findUnique({ where: { id: decoded.userId } });
-
-    return user;
+    
+    try {
+      const user = await db.user.findUnique({ where: { id: decoded.userId } });
+      return user;
+    } catch (dbError) {
+      console.error("Database error in getCurrentUser:", dbError);
+      return null;
+    }
   } catch (error) {
     return null;
   }

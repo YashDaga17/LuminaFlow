@@ -6,6 +6,10 @@ import { getCurrentUser } from "@/lib/actions/auth-actions";
 import { redirect } from "next/navigation";
 import type { Task } from "@/lib/types";
 
+// Make this page dynamic - don't pre-render at build time
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function Home() {
   const user = await getCurrentUser();
 
