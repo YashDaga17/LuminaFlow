@@ -6,8 +6,9 @@ import { z } from "zod";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { revalidatePath } from "next/cache";
+import { config } from "@/lib/config";
 
-const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-in-production";
+const JWT_SECRET = config.JWT_SECRET;
 
 // Validation schemas
 const signUpSchema = z.object({
