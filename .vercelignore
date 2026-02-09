@@ -1,0 +1,6 @@
+# Don't ignore migrations on Vercel
+!prisma/migrations
+
+# Node modules are installed by Vercel
+node_modules/
+.next/

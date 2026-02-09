@@ -2,7 +2,12 @@ node_modules
 .next
 /app/generated/prisma
 
-.env.example
-
 .env
-prisma/migrations/
+.env.local
+.env.*.local
+
+# Keep migrations in git for Vercel deployment
+# prisma/migrations/ - DO NOT IGNORE
+
+# OS
+.DS_Store
